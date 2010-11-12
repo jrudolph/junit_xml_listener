@@ -12,6 +12,7 @@ can be found here:
 https://github.com/harrah/test-interface
 */
 
+
 /**
  * A tests listener that outputs the results it receives in junit xml 
  * report format.
