@@ -47,10 +47,7 @@ class JUnitXmlTestsListener(val outputDir:String) extends TestsListener
         var end                       = System.currentTimeMillis
         
         /**Adds one test result to this suite.*/
-        def addEvent(e:TEvent) = e.result match {
-            case TResult.Skipped => {}
-            case _               => events += e
-        }
+        def addEvent(e:TEvent) = events += e
         
         /** Returns a triplet with the number of errors, failures and the 
           * total numbers of tests in this suite.
@@ -98,6 +95,7 @@ class JUnitXmlTestsListener(val outputDir:String) extends TestsListener
                             case TResult.Error                      => <error message={"No Exception or message provided"} />
                             case TResult.Failure if (e.error!=null) => <failure message={e.error.getMessage} type={e.error.getClass.getName}>{trace}</failure>
                             case TResult.Failure                    => <failure message={"No Exception or message provided"} />
+                            case TResult.Skipped                    => <skipped />
                             case _               => {}
                             }
                     }
